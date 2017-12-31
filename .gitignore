@@ -16,3 +16,11 @@
 *.lot
 *.lof
 *.7z
+*.ini
+*.wlf
+code/counter_updn/sim/work/_info
+*.qdb
+*.qpg
+*.qtl
+code/counter_updn/sim/work/_vmake
+Documentation/build/Documentation.synctex(busy)
