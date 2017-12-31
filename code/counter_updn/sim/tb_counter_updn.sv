@@ -95,13 +95,13 @@ initial begin
 	en =1'b0;
 	down = 1'b1;
 	cntHardware = overflowCnt * maxValue + cnt + 1 - startValue;
-	if (cntHardware == cntSoftware) begin									%(*\label{code: countUp testA}*)
+	if (cntHardware == cntSoftware) begin									//%(*\label{code: countUp testA}*)
 		$display("---- Test passed with counting up: %d ----\n", countUp);
 		end
 	else begin
 		$display("--- Test failed with counting up: %d ----", countUp);
 		$display("---- cntHardware %d, cntSoftware %d -----\n", cntHardware, cntSoftware);
-	end																		%(*\label{code: countUp testB}*)
+	end																		//%(*\label{code: countUp testB}*)
 	
 	#100ns;
 	cntSoftware = 0;
@@ -118,14 +118,14 @@ initial begin
 		end
 	end
 	cntHardware = (overflowCnt- 1) * maxValue + maxValue - cnt + startValue;
-	if (cntHardware == cntSoftware) begin										%(*\label{code: countDown testA}*)
+	if (cntHardware == cntSoftware) begin										//%(*\label{code: countDown testA}*)
 		$display("---- Test passed with counting up: %d ----\n", countUp);
 		end
 	else begin
 		$display("--- Test failed with counting up: %d ---", countDown);
 		$display("---- cntHardware %d, cntSoftware %d ----\n", cntHardware, cntSoftware);
 		$display("");
-	end																			%(*\label{code: countDown testB}*)
+	end																			//%(*\label{code: countDown testB}*)
 	en =1'b0;
 	rst_n = 1'b0;	
 	run_sim = 1'b0; // stop clock generator
