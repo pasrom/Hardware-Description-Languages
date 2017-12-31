@@ -1,0 +1,19 @@
+# -------------------------
+#  TB_COUNTER_UPDN started 
+# -------------------------
+# 
+#  Check: en == 1'b1 and down == 1'b0
+# 
+#  Check: en == 1'b1 and down == 1'b1
+# 
+# --- Stimulate the up count for 100 ---
+# 
+# ---- Test passed with counting up: 100 ----
+# 
+# --- Stimulate the down count for 200 ---
+# 
+# ---- Test passed with counting up: 200 ----
+# 
+# --------------------------
+#  TB_COUNTER_UPDN finished 
+# --------------------------
