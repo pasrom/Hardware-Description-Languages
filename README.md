@@ -7,6 +7,6 @@ run it like
     
     ./template.sh name autorName
 
-you maybe need to do run this command first
+you maybe need to run this command first
     
     chmod +x template.sh
