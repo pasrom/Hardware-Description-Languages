@@ -54,7 +54,7 @@ module tb_$1();
 *   (2) Create an instance of the DUT
 */
 
-$1DUT (.*);
+$1                          DUT (.*);
 
 /*
 *   (3) Create stimuli for all inputs
@@ -62,15 +62,15 @@ $1DUT (.*);
 
 initial begin
 
-    $display(\"---------------------------\");
-    $display(\"    $1 started    \");
-    $display(\"---------------------------\");
+    \$display(\"---------------------------\");
+    \$display(\"    $1 started    \");
+    \$display(\"---------------------------\");
 
     // your test code goes here
 
-    $display(\"---------------------------\");
-    $display(\"   $1 finished    \");
-    $display(\"---------------------------\");
+    \$display(\"---------------------------\");
+    \$display(\"   $1 finished    \");
+    \$display(\"---------------------------\");
 
 end
 endmodule
@@ -102,7 +102,7 @@ view wave"
 echo "$header" > $1/src/$1.sv
 echo "$headerTB" > $1/sim/tb_$1.sv
 echo "$tclScript" > $1/sim/sim_tb_$1.sv
-echo "" > $1/sim/wave_tb_$1.sv
+echo "" > $1/sim/wave_tb_$1.tcl
 
 echo "create template file with name: $1"
 
