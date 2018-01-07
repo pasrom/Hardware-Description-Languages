@@ -12,7 +12,6 @@ module tb_debounce();
 *.  Like footprints for an IC on a PCB
 */
 
-
 logic       rst_n;
 logic       clk50m;
 logic       sw;
@@ -49,18 +48,76 @@ initial begin
     $display("---------------------------");
     sw = 1'b0;
     rst_n = 1'b1;
-    #100ns;
+    #50ns;
     rst_n = 1'b0;
+    #50ns;
+    rst_n = 1'b1;
+    #50ns;
+    
+    @(negedge clk50m);
+    sw = 1'b0;
+    repeat (10) begin
+            @ (posedge clk50m);
+    end
+    #50ns;
+    @(negedge clk50m);
+	sw = 1'b1;
+    
+    repeat (5) begin
+            @ (posedge clk50m);
+    end
+    @ (negedge clk50m);
+    sw = 1'b0;
+    //@ (posedge clk50m);
+
+    @ (negedge clk50m);
+    sw = 1'b1;
+    repeat (3) begin
+            @ (posedge clk50m);
+    end
 
     @(negedge clk50m);
     sw = 1'b0;
+    repeat (5) begin
+            @ (posedge clk50m);
+    end
+
+    @ (negedge clk50m);
+    sw = 1'b1;
     repeat (2) begin
             @ (posedge clk50m);
-        end
-    $display("\t%b\t%b\t%b\t%b\t%b\t%b",rst_n, clk50m, sw, sw_hi, sw_lo, sw_dbnc);
+    end
 
-	
+    @ (negedge clk50m);
+    sw = 1'b0;
+
+    repeat (8) begin
+            @ (posedge clk50m);
+    end
+
+    #200ns;
+
+    @ (negedge clk50m);
+    sw = 1'b1;
+
+    repeat (8) begin
+            @ (posedge clk50m);
+    end
+
+    #200ns;
+
+
+    @ (negedge clk50m);
+    sw = 1'b0;
+
+    repeat (8) begin
+            @ (posedge clk50m);
+    end
+
+    #50ns;
+    @ (negedge clk50m);
 	run_sim = 0;
+    rst_n = 1'b0;
     $display("---------------------------");
     $display("   debounce finished    ");
     $display("---------------------------");

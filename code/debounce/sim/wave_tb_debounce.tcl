@@ -2,20 +2,20 @@ onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate /tb_debounce/rst_n
 add wave -noupdate /tb_debounce/clk50m
-add wave -noupdate /tb_debounce/sw
+add wave -noupdate -color Red -itemcolor Red /tb_debounce/sw
 add wave -noupdate -divider {Counter Up}
-add wave -noupdate /tb_debounce/DUT/sw_hi_cnt
-add wave -noupdate /tb_debounce/DUT/sw_hi_cnt_zero
-add wave -noupdate /tb_debounce/DUT/sw_hi
+add wave -noupdate -color Blue -format Analog-Step -height 74 -itemcolor Blue -max 7.0 -radix unsigned /tb_debounce/DUT/sw_hi_cnt
+add wave -noupdate -color {Cornflower Blue} -itemcolor {Cornflower Blue} /tb_debounce/DUT/sw_hi_cnt_zero
+add wave -noupdate -color Cyan -itemcolor Cyan /tb_debounce/DUT/sw_hi
 add wave -noupdate -divider {Counter Down}
-add wave -noupdate /tb_debounce/DUT/sw_lo_cnt
-add wave -noupdate /tb_debounce/DUT/sw_lo_cnt_zero
-add wave -noupdate /tb_debounce/DUT/sw_lo
+add wave -noupdate -color Magenta -format Analog-Step -height 74 -itemcolor Magenta -max 7.0 -radix unsigned /tb_debounce/DUT/sw_lo_cnt
+add wave -noupdate -color Orchid -itemcolor Orchid /tb_debounce/DUT/sw_lo_cnt_zero
+add wave -noupdate -color Violet -itemcolor Violet /tb_debounce/DUT/sw_lo
 add wave -noupdate -divider {Debounced Switch}
 add wave -noupdate /tb_debounce/DUT/sw_dbnc
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {0 ps} 0}
-quietly wave cursor active 0
+WaveRestoreCursors {{Cursor 1} {107788 ps} 0}
+quietly wave cursor active 1
 configure wave -namecolwidth 256
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
@@ -30,4 +30,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {100487 ps}
+WaveRestoreZoom {0 ps} {1732500 ps}

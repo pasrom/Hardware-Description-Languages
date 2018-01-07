@@ -36,30 +36,36 @@ always_ff @(negedge rst_n or posedge clk50m) begin
         sw_lo_cnt       <= '1;
     end
     else if (sw && !sw_hi_cnt) begin
-        sw_hi           <= 1'b1;
-        sw_hi_cnt_zero  <= 1'b1;
+        sw_lo_cnt       <= '1;
+        sw_hi           <= 1'b0;
         sw_dbnc         <= 1'b1;
+
+    end
+    else if (!sw && !sw_lo_cnt) begin
+        sw_hi_cnt       <= '1;
+        sw_lo           <= 1'b0;
+        sw_dbnc         <= 1'b0;
     end
     // counter if someone pressed the switch
     else if (sw) begin
-        sw_hi_cnt       <= sw_hi_cnt - 1'b1;
+        sw_hi_cnt       <= sw_hi_cnt - `BITS'd1;
         // init low counter to highest value
-        sw_lo_cnt       <= 1;
+        sw_lo_cnt       <= '1;
         sw_lo_cnt_zero  <= 1'b0;
 
-        if (sw_hi_cnt == 0) begin
+        if (sw_hi_cnt == `BITS'd1) begin
             sw_hi           <= 1'b1;
             sw_hi_cnt_zero  <= 1'b1;
         end
     end
     // counter if someone released the switch
     else if (!sw) begin
-        sw_lo_cnt       <= sw_lo_cnt - 1'b1;
+        sw_lo_cnt       <= sw_lo_cnt - `BITS'd1;
         // init low counter to highest value
-        sw_hi_cnt       <= 1;
+        sw_hi_cnt       <= '1;
         sw_hi_cnt_zero  <= 1'b0;
 
-        if (sw_lo_cnt == 0) begin
+        if (sw_lo_cnt == `BITS'd1) begin
             sw_lo           <= 1'b1;
             sw_lo_cnt_zero  <= 1'b1;
         end
@@ -68,7 +74,7 @@ always_ff @(negedge rst_n or posedge clk50m) begin
     // initial condition (startup)
     else begin
         sw_hi_cnt   <= '0;
-        sw_lo_cnt   <= `BITS'b1;
+        sw_lo_cnt   <= '1;
     end
 end
 
