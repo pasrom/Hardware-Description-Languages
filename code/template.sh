@@ -101,7 +101,7 @@ view wave"
 
 echo "$header" > $1/src/$1.sv
 echo "$headerTB" > $1/sim/tb_$1.sv
-echo "$tclScript" > $1/sim/sim_tb_$1.sv
+echo "$tclScript" > $1/sim/sim_tb_$1.tcl
 echo "" > $1/sim/wave_tb_$1.tcl
 
 echo "create template file with name: $1"
