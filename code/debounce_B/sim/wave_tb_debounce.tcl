@@ -16,8 +16,8 @@ add wave -noupdate /tb_debounce/DUT/lo_edge
 add wave -noupdate -divider {Debounced Switch}
 add wave -noupdate /tb_debounce/DUT/sw_dbnc
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {1070000 ps} 0} {{Cursor 3} {390000 ps} 0} {{Cursor 5} {490000 ps} 0} {{Cursor 6} {570000 ps} 0} {{Cursor 7} {710000 ps} 0} {{Cursor 8} {670000 ps} 0} {{Cursor 9} {470000 ps} 0} {{Cursor 10} {1430000 ps} 0} {{Cursor 11} {9040 ps} 0}
-quietly wave cursor active 9
+WaveRestoreCursors {{Cursor 1} {1070000 ps} 0} {{Cursor 3} {510000 ps} 0} {{Cursor 5} {490000 ps} 0} {{Cursor 6} {570000 ps} 0} {{Cursor 7} {710000 ps} 0} {{Cursor 8} {670000 ps} 0} {{Cursor 9} {7533 ps} 0} {{Cursor 10} {1430000 ps} 0}
+quietly wave cursor active 7
 configure wave -namecolwidth 216
 configure wave -valuecolwidth 40
 configure wave -justifyvalue left
