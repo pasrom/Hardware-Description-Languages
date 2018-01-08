@@ -19,13 +19,14 @@ module debounce (
 // (1) counter for high
     logic [`BITS-1:0]   sw_hi_cnt;
     logic               sw_hi_cnt_zero;
+    logic               hi_edge;
 
 // (2) counter for low
     logic [`BITS-1:0]   sw_lo_cnt;
     logic               sw_lo_cnt_zero;
+    logic               lo_edge;
 
- // (1) Implementation of counter high
-        
+// (1) Implementation of counter high        
     assign sw_hi_cnt_zero = ~|sw_hi_cnt;
     
     always_ff @ (negedge rst_n or posedge clk50m) begin
@@ -44,17 +45,19 @@ module debounce (
     end
     
     // edge detection down
-    logic hi_edge;
     always_ff @ (negedge rst_n or posedge clk50m) begin
         if (~rst_n) begin
             hi_edge = 1'b0;
         end
+        else if(sw_hi_cnt == `BITS'd1)begin
+            hi_edge = 1'b1;
+        end
         else begin
-            hi_edge = sw_hi_cnt_zero;
+            hi_edge = 1'b0;
         end
     end
     
-    assign sw_hi = (sw_hi_cnt_zero & ~hi_edge);
+    assign sw_hi = (sw_hi_cnt_zero & hi_edge) ;
     
     // (2) Implementation of counter low
     
@@ -76,18 +79,19 @@ module debounce (
     end
     
     // edge detection down
-    logic lo_edge;
     always_ff @ (negedge rst_n or posedge clk50m) begin
         if (~rst_n) begin
             lo_edge = 1'b0;
         end
-        else  begin
-            lo_edge = sw_lo_cnt_zero;
+        else if(sw_lo_cnt == `BITS'd1)begin
+            lo_edge = 1'b1;
+        end
+        else begin
+            lo_edge = 1'b0;
         end
     end
     
-    //~|sw_lo_cnt & lo_edge; // 
-    assign sw_lo = (sw_lo_cnt_zero & ~lo_edge);
+    assign sw_lo = (sw_lo_cnt_zero & lo_edge);
     
     // (3) output FF
     always_ff @ (negedge rst_n or posedge clk50m) begin
