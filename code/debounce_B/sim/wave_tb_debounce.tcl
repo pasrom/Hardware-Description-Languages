@@ -16,10 +16,10 @@ add wave -noupdate /tb_debounce/DUT/lo_edge
 add wave -noupdate -divider {Debounced Switch}
 add wave -noupdate /tb_debounce/DUT/sw_dbnc
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {242483 ps} 0}
+WaveRestoreCursors {{Cursor 1} {185011 ps} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 256
-configure wave -valuecolwidth 100
+configure wave -namecolwidth 216
+configure wave -valuecolwidth 39
 configure wave -justifyvalue left
 configure wave -signalnamewidth 0
 configure wave -snapdistance 10
@@ -32,4 +32,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {1732500 ps}
+WaveRestoreZoom {0 ps} {1669500 ps}
