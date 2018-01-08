@@ -24,3 +24,7 @@ code/counter_updn/sim/work/_info
 *.qtl
 code/counter_updn/sim/work/_vmake
 Documentation/build/Documentation.synctex(busy)
+code/debounce_B/sim/wlft3hct3g
+code/debounce_B/sim/work/_info
+code/debounce_B/sim/work/_vmake
+Documentation_Stop_Watch.docx
