@@ -29,7 +29,8 @@ module debounce (
 // (1) Implementation of counter high        
     assign sw_hi_cnt_zero = ~|sw_hi_cnt;
     
-    always_ff @ (negedge rst_n or posedge clk50m) begin
+    always_ff @ (negedge rst_n or posedge clk50m) begin // %(*\label{code:ff sw_hi_cnt begin}*)
+    end
         if (~rst_n) begin
             sw_hi_cnt <= '1;
         end
@@ -42,10 +43,10 @@ module debounce (
         else begin
             sw_hi_cnt <= '1;
         end
-    end
+    end                                                 // %(*\label{code:ff sw_hi_cnt end}*)
     
-    // edge detection down
-    always_ff @ (negedge rst_n or posedge clk50m) begin
+// edge detection up
+    always_ff @ (negedge rst_n or posedge clk50m) begin // %(*\label{code: edge up begin}*)
         if (~rst_n) begin
             hi_edge = 1'b0;
         end
@@ -55,15 +56,14 @@ module debounce (
         else begin
             hi_edge = 1'b0;
         end
-    end
+    end                                                 // %(*\label{code: edge up end}*)
     
     assign sw_hi = (sw_hi_cnt_zero & hi_edge) ;
     
-    // (2) Implementation of counter low
-    
+// (2) Implementation of counter low
     assign sw_lo_cnt_zero = ~|sw_lo_cnt;
     
-    always_ff @ (negedge rst_n or posedge clk50m) begin
+    always_ff @ (negedge rst_n or posedge clk50m) begin // %(*\label{code:ff sw_lo_cnt begin}*)
         if (~rst_n) begin
             sw_lo_cnt <= '1;
         end
@@ -76,10 +76,10 @@ module debounce (
         else begin
             sw_lo_cnt <= '1;
         end
-    end
+    end                                                 // %(*\label{code:ff sw_lo_cnt end}*)
     
-    // edge detection down
-    always_ff @ (negedge rst_n or posedge clk50m) begin
+// edge detection down
+    always_ff @ (negedge rst_n or posedge clk50m) begin // %(*\label{code: edge down begin}*)
         if (~rst_n) begin
             lo_edge = 1'b0;
         end
@@ -89,12 +89,12 @@ module debounce (
         else begin
             lo_edge = 1'b0;
         end
-    end
+    end                                                 // %(*\label{code: edge down end}*)
     
     assign sw_lo = (sw_lo_cnt_zero & lo_edge);
     
-    // (3) output FF
-    always_ff @ (negedge rst_n or posedge clk50m) begin
+// (3) output FF
+    always_ff @ (negedge rst_n or posedge clk50m) begin // %(*\label{code: ff output begin}*)
         if (~rst_n) begin
             sw_dbnc <= 1'b0;
         end
@@ -104,6 +104,6 @@ module debounce (
         else if (sw_hi) begin
             sw_dbnc <= 1'b1;
         end
-    end
+    end                                                 // %(*\label{code: ff output end}*)
 
 endmodule
