@@ -46,12 +46,11 @@ initial begin
     $display("---------------------------");
     $display("    debounce started    ");
     $display("---------------------------");
-
-    @(negedge clk50m);
-    rst_n = 1'b0;
     sw = 1'b0;
+    rst_n = 1'b1;
     #50ns;
-    @(negedge clk50m);
+    rst_n = 1'b0;
+    #50ns;
     rst_n = 1'b1;
     #50ns;
     

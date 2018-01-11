@@ -19,63 +19,91 @@ module debounce (
 // (1) counter for high
     logic [`BITS-1:0]   sw_hi_cnt;
     logic               sw_hi_cnt_zero;
+    logic               hi_edge;
 
 // (2) counter for low
     logic [`BITS-1:0]   sw_lo_cnt;
     logic               sw_lo_cnt_zero;
+    logic               lo_edge;
 
-always_ff @(negedge rst_n or posedge clk50m) begin
-    // reset
-    if(!rst_n) begin
-        sw_hi           <= 1'b0;
-        sw_lo           <= 1'b0;
-        sw_dbnc         <= 1'b0;
-        sw_lo_cnt_zero  <= 1'b0;
-        sw_hi_cnt_zero  <= 1'b0;
-        sw_hi_cnt       <= '0;
-        sw_lo_cnt       <= '1;
+// (1) Implementation of counter high        
+    assign sw_hi_cnt_zero = ~|sw_hi_cnt;
+    
+    always_ff @ (negedge rst_n or posedge clk50m) begin // %(*\label{code:ff sw_hi_cnt begin}*)
     end
-    else if (sw && !sw_hi_cnt) begin
-        sw_lo_cnt       <= '1;
-        sw_hi           <= 1'b0;
-        sw_dbnc         <= 1'b1;
-
-    end
-    else if (!sw && !sw_lo_cnt) begin
-        sw_hi_cnt       <= '1;
-        sw_lo           <= 1'b0;
-        sw_dbnc         <= 1'b0;
-    end
-    // counter if someone pressed the switch
-    else if (sw) begin
-        sw_hi_cnt       <= sw_hi_cnt - `BITS'd1;
-        // init low counter to highest value
-        sw_lo_cnt       <= '1;
-        sw_lo_cnt_zero  <= 1'b0;
-
-        if (sw_hi_cnt == `BITS'd1) begin
-            sw_hi           <= 1'b1;
-            sw_hi_cnt_zero  <= 1'b1;
+        if (~rst_n) begin
+            sw_hi_cnt <= '1;
         end
-    end
-    // counter if someone released the switch
-    else if (!sw) begin
-        sw_lo_cnt       <= sw_lo_cnt - `BITS'd1;
-        // init low counter to highest value
-        sw_hi_cnt       <= '1;
-        sw_hi_cnt_zero  <= 1'b0;
-
-        if (sw_lo_cnt == `BITS'd1) begin
-            sw_lo           <= 1'b1;
-            sw_lo_cnt_zero  <= 1'b1;
+        else if (sw & sw_hi_cnt_zero) begin
+            sw_hi_cnt <= '0;
         end
-    end
-
-    // initial condition (startup)
-    else begin
-        sw_hi_cnt   <= '0;
-        sw_lo_cnt   <= '1;
-    end
-end
+        else if (sw) begin
+            sw_hi_cnt <= sw_hi_cnt - `BITS'd1;
+        end
+        else begin
+            sw_hi_cnt <= '1;
+        end
+    end                                                 // %(*\label{code:ff sw_hi_cnt end}*)
+    
+// edge detection up
+    always_ff @ (negedge rst_n or posedge clk50m) begin // %(*\label{code: edge up begin}*)
+        if (~rst_n) begin
+            hi_edge = 1'b0;
+        end
+        else if(sw_hi_cnt == `BITS'd1)begin
+            hi_edge = 1'b1;
+        end
+        else begin
+            hi_edge = 1'b0;
+        end
+    end                                                 // %(*\label{code: edge up end}*)
+    
+    assign sw_hi = (sw_hi_cnt_zero & hi_edge) ;
+    
+// (2) Implementation of counter low
+    assign sw_lo_cnt_zero = ~|sw_lo_cnt;
+    
+    always_ff @ (negedge rst_n or posedge clk50m) begin // %(*\label{code:ff sw_lo_cnt begin}*)
+        if (~rst_n) begin
+            sw_lo_cnt <= '1;
+        end
+        else if (~sw & sw_lo_cnt_zero) begin
+            sw_lo_cnt <= '0;
+        end
+        else if (~sw) begin
+            sw_lo_cnt <= sw_lo_cnt - `BITS'd1;
+        end
+        else begin
+            sw_lo_cnt <= '1;
+        end
+    end                                                 // %(*\label{code:ff sw_lo_cnt end}*)
+    
+// edge detection down
+    always_ff @ (negedge rst_n or posedge clk50m) begin // %(*\label{code: edge down begin}*)
+        if (~rst_n) begin
+            lo_edge = 1'b0;
+        end
+        else if(sw_lo_cnt == `BITS'd1)begin
+            lo_edge = 1'b1;
+        end
+        else begin
+            lo_edge = 1'b0;
+        end
+    end                                                 // %(*\label{code: edge down end}*)
+    
+    assign sw_lo = (sw_lo_cnt_zero & lo_edge);
+    
+// (3) output FF
+    always_ff @ (negedge rst_n or posedge clk50m) begin // %(*\label{code: ff output begin}*)
+        if (~rst_n) begin
+            sw_dbnc <= 1'b0;
+        end
+        else if (sw_lo) begin
+            sw_dbnc <= 1'b0;
+        end
+        else if (sw_hi) begin
+            sw_dbnc <= 1'b1;
+        end
+    end                                                 // %(*\label{code: ff output end}*)
 
 endmodule
