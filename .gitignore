@@ -30,3 +30,16 @@ code/debounce_B/sim/work/_vmake
 Documentation_Stop_Watch.docx
 code/debounce_B/sim/wlftg75ycj
 ~$cumentation_Stop_Watch.docx
+*.autosave
+*.original
+*.do
+*.tmw
+*.mat
+Simulink/sl/hdlsrc/pwm_code_gen/pwm_unit_report.html
+Simulink/sl/hdlsrc/pwm_code_gen/pwm_unit_map.txt
+Simulink/sl/hdlsrc/pwm_code_gen/gm_pwm_code_gen.slx
+Simulink/sl/hdlsrc/adder_code_gen/gm_adder_code_gen.slx
+Simulink/sl/hdlsrc/adder_code_gen/add_sl_s_report.html
+Simulink/sl/hdlsrc/adder_code_gen/add_sl_s_prot_report.html
+Simulink/sl/hdlsrc/adder_code_gen/add_sl_s_prot_map.txt
+Simulink/sl/hdlsrc/adder_code_gen/add_sl_s_map.txt
