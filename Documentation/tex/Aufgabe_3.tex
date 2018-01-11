@@ -19,7 +19,7 @@ Der Switch, der für den Betrieb der Stoppuhr bestimmt ist, muss entprellt werde
 %
 \section{Implementierung}
 %
-Die Implementierung erfolgt wie in \autoref{lst:counter_updn} dargestellt ist.\par
+Als erstes wurde eine Implementierung mit einem Flipflop erstellt\footnote{Siehe \url{https://github.com/pasrom/Hardware-Description-Languages/tree/master/code/debounce_2}}. Da dies unübersichtlich und für das \gls{fpga} zu viele Bauelemente beinhaltet, wurde versucht die Aufgaben in Flipflops aufzuteilen. Die Implementierung erfolgt wie in \autoref{lst:counter_updn} dargestellt ist.\par
 %
 In Codezeile \autoref{code:ff sw_hi_cnt begin} bis \autoref{code:ff sw_hi_cnt end} ist der Counter für die positive Flanke in einem Flipflop dargestellt. In Codezeile \autoref{code:ff sw_lo_cnt begin} bis \autoref{code:ff sw_lo_cnt end} ist der Counter für die negative Flanke in einem Flipflop dargestellt.\par
 %
