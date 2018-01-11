@@ -91,7 +91,7 @@ vlog tb_$1.sv
 vsim tb_$1
 # -r recursive
 log -r *
-#do wave_tb_$1.tcl
+do wave_tb_$1.tcl
 
 # Run simulation
 run -all
