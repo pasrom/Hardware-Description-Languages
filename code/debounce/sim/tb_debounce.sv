@@ -24,7 +24,9 @@ logic       sw_dbnc;
 *   (2) Create an instance of the DUT
 */
 
-debounce       DUT (.*);
+localparam TBWIDTH = 4;
+
+debounce    #(.WIDTH (TBWIDTH))    DUT (.*);
 
 /*
 *   (3) Create stimuli for all inputs
