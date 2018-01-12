@@ -43,7 +43,7 @@ Author:     $2
 Version:    00, $now
 --------------------------------------*/
 
-`timescale 10ns/10ns
+\`timescale 10ns/10ns
 
 module tb_$1();
 
