@@ -1,0 +1,17 @@
+Analysis & Synthesis Status : Successful - Wed Dec 06 17:57:08 2017
+Quartus Prime Version : 17.0.0 Build 595 04/25/2017 SJ Lite Edition
+Revision Name : Toplevel_C5G_led_switch_7segx2_gpio_uart
+Top-level Entity Name : toplevel_c5g_led_switch_7segx2_gpio_uart
+Family : Cyclone V
+Logic utilization (in ALMs) : N/A
+Total registers : 204
+Total pins : 90
+Total virtual pins : 0
+Total block memory bits : 16,384
+Total DSP Blocks : 0
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 0
+Total DLLs : 0
