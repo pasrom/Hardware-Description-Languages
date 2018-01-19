@@ -30,7 +30,6 @@ module debounce (
     assign sw_hi_cnt_zero = ~|sw_hi_cnt;
     
     always_ff @ (negedge rst_n or posedge clk50m) begin // %(*\label{code:ff sw_hi_cnt begin}*)
-    end
         if (~rst_n) begin
             sw_hi_cnt <= '1;
         end
