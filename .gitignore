@@ -31,3 +31,11 @@
 **/work
 **/slprj
 **/hdlsrc
+*.acr
+*.alg
+*.bbl
+*.blg
+*.glg
+*.gls
+*.slg
+*.syi
