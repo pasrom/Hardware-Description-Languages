@@ -45,38 +45,39 @@ end
 
 initial begin
     automatic int cntSoftware = 0;
-    automatic int offset = 1000;
+    automatic int offset = 2**16/2-1;
     automatic int sinus = 0;
+    automatic int endTime = 0;
     $display("---------------------------");
     $display("    ds_dac_sl started      ");
     $display("---------------------------");
 
+    @ (negedge clk50m);
     rst_n = 1'b0;
     clk_enable = 1'b0;
     din = 16'b0;
     #50ns;
+    @ (negedge clk50m);
     rst_n = 1'b1;
     clk_enable = 1'b1;
     #50ns;
-    //din = $sin(3.14);//16'b1111111111;
-    repeat (2000*100) begin
+    
+    endTime = $realtime + 1000000;
+    while ($realtime < endTime) begin
         @ (negedge clk50m); // wait for negedge
-        cntSoftware++;
-        if (cntSoftware % 1 == 0) begin
-            sinus = $sin(2*3.14*$realtime*0.000005-3.14/2)*1000+offset;
-            if (sinus < 0) begin
-                sinus = 0;
-            end
-            //$display("%d %d %d",sinus, $realtime, start);
+        sinus = $sin(2*3.14*$realtime*0.000001)*offset+offset; // %(*\label{code: sinusgenerierung}*)
+        // check if sin is negativ, because din is a unsigned fixed point number
+        if (sinus < 0) begin
+            sinus = 0;
         end
+            //$display("%d",$realtime);
         din = sinus;
     end
 
+    @ (negedge clk50m);
     run_sim = 1'b0;
     $display("---------------------------");
     $display("   ds_dac_sl finished      ");
     $display("---------------------------");
 end
 endmodule
-
-
