@@ -5,48 +5,111 @@
 \def\codeFileName{ds_dac_sl}
 \def\codeFolderNameB{}
 %
-\chapter{Debouncer}
+\chapter{DAC}
 %
 \section{Einleitung}
 %
-Der Switch, der für den Betrieb der Stoppuhr bestimmt ist, muss entprellt werden, da ansonsten die Statemachine nicht ordnungsgemäß funktioniert. Dieses Beispiel entprellt die \enquote{high} sowie \enquote{low} Flanke.
-%
-\begin{itemize}
-	\item Wenn der Switch \enquote{low} ist, wird der erste Counter gestartet von einem Initialwert (alle Bits auf eins). Das Signal ist solange gültig, bis der Counter null erreicht hat. Wenn der Switch \enquote{high} schaltet, so wird der erste Counter sofort rückgesetzt auf seinen Initialwert.
-	\item Wenn der Switch \enquote{high} ist, wird der zweite Counter gestartet von einem Initialwert (alle Bits auf eins). Das Signal ist solange gültig, bis der Counter null erreicht hat. Wenn der Switch \enquote{low} schaltet, so wird der zweite Counter sofort rückgesetzt auf seinen Initialwert.
-	\item Die Bitbreite des Counters muss in einem Header File mit einem Makro (\enquote{BITS}) definiert werden. Für diese Implementierung wird \enquote{BITS} auf drei gesetzt.
-	\item Die Flankenerkennung der fallenden und steigenden Flanke des entprellten Signals wird als \enquote{sw\_hi} und \enquote{sw\_lo} ausgegeben. Beide Ausgänge sind nur für einen Clock Zyklus auf \enquote{high}.
-\end{itemize}
+Bei dieser Aufgabe soll ein \gls{dac} in Simulink erstellt und simuliert werden. Anschließend soll eine Verilog Codegenerierung gemacht werden. Die Verilog Codegenerierung benötigt \enquote{fixed-point} Datentypen, somit müssen die \enquote{double} Datentypen richtig deklariert werden. Dabei muss beachtet werden, dass bei Summen ein Überlauf stattfinden kann und somit das Ergebnis ein Bit länger sein muss wie die Eingänge.
 %
 \section{Implementierung}
 %
-Als erstes wurde eine Implementierung mit einem Flipflop erstellt\footnote{Siehe \url{https://github.com/pasrom/Hardware-Description-Languages/tree/master/code/debounce_2}}. Da dies unübersichtlich und für das \gls{fpga} zu viele Bauelemente beinhaltet, wurde versucht die Aufgaben in Flipflops aufzuteilen. Die Implementierung erfolgt wie in \autoref{lst:counter_updn} dargestellt ist.\par
+Ein Delta-Sigma-Wandler wandelt einen digitalen Wert in einen Bitstrom um. Der Durchschnittswert des Bitstroms ist der digitale Eingabewert. Ein analoger Tiefpassfilter (Rekonstruktionsfilter) wird dann verwendet, um den Durchschnitt des Bitstroms zu erhalten. Dadurch wird der digitale Wert in ein analoges Signal (z. B. Spannung) umgewandelt.\par
 %
-In Codezeile \autoref{code:ff sw_hi_cnt begin} bis \autoref{code:ff sw_hi_cnt end} ist der Counter für die positive Flanke in einem Flipflop dargestellt. In Codezeile \autoref{code:ff sw_lo_cnt begin} bis \autoref{code:ff sw_lo_cnt end} ist der Counter für die negative Flanke in einem Flipflop dargestellt.\par
+In \autoref{fig: Simulink Implementierung} ist die Implementierung ersichtlich, bestehend aus:
 %
-Um den Übergang der Counter auf null zu erkennen wurde jeweils für die zwei Counter ein eigenes Flipflop erstellt, dies ist in Codezeile \autoref{code: edge up begin} bis \autoref{code: edge up end} (positive Flanke) und in Codezeile \autoref{code: edge down begin} bis \autoref{code: edge down end} (negative Flanke) dargestellt.\par
+\begin{description}
+	\item[Signalgenerierung:] Vorgabe einer DC oder Sinus Spannung.
+	\item[Diskretisierung mit Halteglied:] Hier wird das generierte Signal auf ein \enquote{digitales} Signal gewandelt.
+	\item[\enquote{ds\_dac\_dbl}:] Hier wird der der Sigma Delta Wandler mit \enquote{double} Datentypen simuliert (siehe \autoref{fig: Simulink Implementierung 5}).
+	\item[\enquote{ds\_dac\_sl}:] Hier wird der Sigma Delta Wandler mit \enquote{fixed-point} Datentypen simuliert und ist somit für die Verilog Codegenerierung geeignet (siehe \autoref{fig: Simulink Implementierung 6}).
+	\item[\enquote{\gls{pwm}}:] Ist ein Vergleich, wie mit einer \gls{pwm} ein \enquote{analoges} Signal generiert werden kann.
+	\item[DS\_DAC\_Trans\_XXX:] Hier wird ein Tiefpassfilter auf das generierte Pulssignal angewendet (siehe \autoref{fig: Simulink Implementierung 2}).
+\end{description}
 %
-Für den entprellten Ausgang wurde ebenfalls ein eigenes Flipflop implementiert, dies ist in Codezeile \autoref{code: ff output begin} bis \autoref{code: ff output end} zu sehen.\par
+Die Samplezeit wurde auf \(\frac{1}{50\cdot 10^{6}}~s\) gestellt und ein Fixed-step Solver ausgewählt. \(\tau\) wurde \(0.01 \cdot 10^{-3}\) gewählt. Die Frequenz ist mit \(100~Hz\) definiert.
 %
-Die Ausgänge \enquote{sw\_lo\_cnt\_zero} und \enquote{sw\_hi\_cnt\_zero} werden mit den jeweiligen Countern zugewiesen, wenn der Counter null ist, so ist der Ausgang eins.
+% T=1/50e6;
+% tau = 0.01e-3;
 %
-\lstinputlisting[language=Verilog,label={lst:counter_updn}, caption=Implementierung]{./../code/\codeFolderName\codeFolderNameB/src/\codeFileName.sv}
+\begin{figure}[H]
+	\centering
+	\noindent\adjustbox{max width=\textwidth}{%falls größer als \textwidth, wird das Bild verkleinert
+		%trim option's parameter order: left bottom right top
+		\includegraphics[width=1\textwidth,page=1]{./../code/\codeFolderName\codeFolderNameB/doc/simulink.pdf}
+	}
+	\unterschrift{Simulink Implementierung}{eigene Ausarbeitung}{}
+	\label{fig: Simulink Implementierung}
+\end{figure}
+%
+\begin{figure}[H]
+	\centering
+	\noindent\adjustbox{max width=\textwidth}{%falls größer als \textwidth, wird das Bild verkleinert
+		%trim option's parameter order: left bottom right top
+		\includegraphics[width=0.75\textwidth,page=2]{./../code/\codeFolderName\codeFolderNameB/doc/simulink.pdf}
+	}
+	\unterschrift{Simulink Implementierung: Tiefpassfilter}{eigene Ausarbeitung}{}
+	\label{fig: Simulink Implementierung 2}
+\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\noindent\adjustbox{max width=\textwidth}{%falls größer als \textwidth, wird das Bild verkleinert
+%		%trim option's parameter order: left bottom right top
+%		\includegraphics[width=1\textwidth,page=3]{./../code/\codeFolderName\codeFolderNameB/doc/simulink.pdf}
+%	}
+%	\unterschrift{Simulink Implementierung}{eigene Ausarbeitung}{}
+%	\label{fig: Simulink Implementierung 3}
+%\end{figure}
+%%
+%\begin{figure}[H]
+%	\centering
+%	\noindent\adjustbox{max width=\textwidth}{%falls größer als \textwidth, wird das Bild verkleinert
+%		%trim option's parameter order: left bottom right top
+%		\includegraphics[width=1\textwidth,page=4]{./../code/\codeFolderName\codeFolderNameB/doc/simulink.pdf}
+%	}
+%	\unterschrift{Simulink Implementierung}{eigene Ausarbeitung}{}
+%	\label{fig: Simulink Implementierung 4}
+%\end{figure}
+%
+\begin{figure}[H]
+	\centering
+	\noindent\adjustbox{max width=\textwidth}{%falls größer als \textwidth, wird das Bild verkleinert
+		%trim option's parameter order: left bottom right top
+		\includegraphics[width=1\textwidth,page=5]{./../code/\codeFolderName\codeFolderNameB/doc/simulink.pdf}
+	}
+	\unterschrift{Simulink Implementierung: \glsentryshort{dac} mit \enquote{fixed-point} Datentypen}{eigene Ausarbeitung}{}
+	\label{fig: Simulink Implementierung 5}
+\end{figure}
+%
+\begin{figure}[H]
+	\centering
+	\noindent\adjustbox{max width=\textwidth}{%falls größer als \textwidth, wird das Bild verkleinert
+		%trim option's parameter order: left bottom right top
+		\includegraphics[width=1\textwidth,page=6]{./../code/\codeFolderName\codeFolderNameB/doc/simulink.pdf}
+	}
+	\unterschrift{Simulink Implementierung: \glsentryshort{dac} mit \enquote{double} Datentypen}{eigene Ausarbeitung}{}
+	\label{fig: Simulink Implementierung 6}
+\end{figure}
+%
+Bei der Verilog Codegenerierung ist ersichtlich, dass die Deklaration von Variablen noch genauer angeben ist. Es muss die Dateiendung von \enquote{*.s} auf \enquote{*.sv} geändert werden.
+%
+\lstinputlisting[language=Verilog,label={lst:counter_updn}, caption=Resultat der Codegenerierung]{./../code/\codeFolderName\codeFolderNameB/src/\codeFileName.sv}
 %
 \section{Test Bench}
 %
-In \autoref{lst:tb_counter_updn} ist die Testbench ersichtlich.
+In \autoref{lst:tb_counter_updn} ist die Testbench ersichtlich. Das Herzstück der Testbench ist die Sinusgenerierung (Codezeile \ref{code: sinusgenerierung}). Diese Anweisung verpackt in einer \enquote{while} Schleife ergibt einen Sinus. Die Frequenz, Amplitude und Startpunkt der Sinusgenerierung wurde zur besseren Vergleichbarkeit an die Simulation in Simulink angepasst.
 %
-\lstinputlisting[language=Verilog,label={lst:tb_counter_updn}, caption=Testbench für den Up / Down Counter]{./../code/\codeFolderName\codeFolderNameB/sim/tb_\codeFileName.sv}
+\lstinputlisting[language=Verilog,label={lst:tb_counter_updn}, caption=Testbench für den \glsentryshort{dac}]{./../code/\codeFolderName\codeFolderNameB/sim/tb_\codeFileName.sv}
 %
 \section{Simulationsscript}
 %
-In \autoref{lst:sim_tb_counter_updn} ist das Simulationsscript dargestellt. Es beinhaltet dieselben Befehle wie in der letzten Lehrveranstaltung, natürlich angepasst an den Debouncer.
+In \autoref{lst:sim_tb_counter_updn} ist das Simulationsscript dargestellt. Es beinhaltet dieselben Befehle wie in der letzten Lehrveranstaltung, natürlich angepasst an den \gls{dac}.
 %
 \lstinputlisting[language=tcl,label={lst:sim_tb_counter_updn}, caption=Simulationsscript]{./../code/\codeFolderName\codeFolderNameB/sim/sim_tb_\codeFileName.tcl}
 %
-\section{Transkript und Waveform Window}
+\section{Waveform Window und Simulink Simulation}
 %
-In \autoref{fig: wavewindow_up_down} ist das Waveform Window dargestellt. Es zeigt die geforderten Testfälle. Wie zu sehen ist, wurden die Anforderungen erfüllt.
+In \autoref{fig: wavewindow_dac} ist das Waveform Window dargestellt. Es zeigt den generierten Sinus. In \autoref{fig: simulink} ist der Vergleich zur Simulation ersichtlich. Es ist ersichtlich, dass bei den \enquote{Peaks} (ca. bei \(2.5~ms\)) der Ausgang \enquote{High} und bei den \enquote{Lows} (ca. bei \(7.5~ms\)) der Ausgang \enquote{Low} ist.
 %
 \begin{figure}[H]
 	\centering
@@ -55,7 +118,17 @@ In \autoref{fig: wavewindow_up_down} ist das Waveform Window dargestellt. Es zei
 	\includegraphics[width=1\textwidth]{./../code/\codeFolderName\codeFolderNameB/doc/wavewindow_\codeFileName.PNG}
 	}
 	\unterschrift{Waveform Window}{eigene Ausarbeitung}{}
-	\label{fig: wavewindow_up_down}
+	\label{fig: wavewindow_dac}
+\end{figure}
+%
+\begin{figure}[H]
+	\centering
+	\noindent\adjustbox{max width=\textwidth}{%falls größer als \textwidth, wird das Bild verkleinert
+		%trim option's parameter order: left bottom right top
+		\includegraphics[width=1\textwidth]{./../code/\codeFolderName\codeFolderNameB/doc/simulink.eps}
+	}
+	\unterschrift{Simulink Simulationsergebnisse}{eigene Ausarbeitung}{}
+	\label{fig: simulink}
 \end{figure}
 %
 %In \autoref{ausgabeTwo} ist der Output des Testcripts zu sehen. Alle Testfälle wurden bestanden.
