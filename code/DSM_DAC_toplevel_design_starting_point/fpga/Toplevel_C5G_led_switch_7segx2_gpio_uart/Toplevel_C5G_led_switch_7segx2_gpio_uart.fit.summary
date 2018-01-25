@@ -1,11 +1,11 @@
-Fitter Status : Successful - Wed Dec 06 17:58:05 2017
+Fitter Status : Successful - Thu Jan 25 14:38:32 2018
 Quartus Prime Version : 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 Revision Name : Toplevel_C5G_led_switch_7segx2_gpio_uart
 Top-level Entity Name : toplevel_c5g_led_switch_7segx2_gpio_uart
 Family : Cyclone V
 Device : 5CGXFC5C6F27C7
 Timing Models : Final
-Logic utilization (in ALMs) : 160 / 29,080 ( < 1 % )
+Logic utilization (in ALMs) : 158 / 29,080 ( < 1 % )
 Total registers : 222
 Total pins : 91 / 364 ( 25 % )
 Total virtual pins : 0

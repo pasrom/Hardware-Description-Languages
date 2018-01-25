@@ -1,5 +1,5 @@
 Flow report for Toplevel_C5G_led_switch_7segx2_gpio_uart
-Wed Dec 06 17:58:28 2017
+Thu Jan 25 14:38:50 2018
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -41,14 +41,14 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Wed Dec 06 17:58:15 2017       ;
+; Flow Status                     ; Successful - Thu Jan 25 14:38:40 2018       ;
 ; Quartus Prime Version           ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; Toplevel_C5G_led_switch_7segx2_gpio_uart    ;
 ; Top-level Entity Name           ; toplevel_c5g_led_switch_7segx2_gpio_uart    ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CGXFC5C6F27C7                              ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 160 / 29,080 ( < 1 % )                      ;
+; Logic utilization (in ALMs)     ; 158 / 29,080 ( < 1 % )                      ;
 ; Total registers                 ; 222                                         ;
 ; Total pins                      ; 91 / 364 ( 25 % )                           ;
 ; Total virtual pins              ; 0                                           ;
@@ -68,7 +68,7 @@ agreement for further details.
 +-------------------+------------------------------------------+
 ; Option            ; Setting                                  ;
 +-------------------+------------------------------------------+
-; Start date & time ; 12/06/2017 17:56:33                      ;
+; Start date & time ; 01/25/2018 14:37:27                      ;
 ; Main task         ; Compilation                              ;
 ; Revision Name     ; Toplevel_C5G_led_switch_7segx2_gpio_uart ;
 +-------------------+------------------------------------------+
@@ -79,7 +79,7 @@ agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+------------------------------------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name                              ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+------------------------------------------+------------+
-; COMPILER_SIGNATURE_ID               ; 192094514969652.151257939300196        ; --            ; --                                       ; --         ;
+; COMPILER_SIGNATURE_ID               ; 176156460635548.151688744710668        ; --            ; --                                       ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --                                       ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --                                       ; --         ;
 ; MISC_FILE                           ; ip/mult_16bit_bb.v                     ; --            ; --                                       ; --         ;
@@ -97,24 +97,24 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:34     ; 1.0                     ; 742 MB              ; 00:01:15                           ;
-; Fitter                    ; 00:00:56     ; 1.0                     ; 1980 MB             ; 00:01:27                           ;
-; Assembler                 ; 00:00:08     ; 1.0                     ; 692 MB              ; 00:00:08                           ;
-; TimeQuest Timing Analyzer ; 00:00:12     ; 1.1                     ; 1032 MB             ; 00:00:12                           ;
-; Total                     ; 00:01:50     ; --                      ; --                  ; 00:03:02                           ;
+; Analysis & Synthesis      ; 00:00:28     ; 1.0                     ; 768 MB              ; 00:00:57                           ;
+; Fitter                    ; 00:00:35     ; 1.1                     ; 2384 MB             ; 00:01:06                           ;
+; Assembler                 ; 00:00:06     ; 1.0                     ; 717 MB              ; 00:00:06                           ;
+; TimeQuest Timing Analyzer ; 00:00:09     ; 1.1                     ; 1096 MB             ; 00:00:10                           ;
+; Total                     ; 00:01:18     ; --                      ; --                  ; 00:02:19                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+------------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                          ;
-+---------------------------+------------------+-------------+------------+----------------+
-; Module Name               ; Machine Hostname ; OS Name     ; OS Version ; Processor type ;
-+---------------------------+------------------+-------------+------------+----------------+
-; Analysis & Synthesis      ; ANM-NB           ; Windows 8.1 ; 6.3        ; x86_64         ;
-; Fitter                    ; ANM-NB           ; Windows 8.1 ; 6.3        ; x86_64         ;
-; Assembler                 ; ANM-NB           ; Windows 8.1 ; 6.3        ; x86_64         ;
-; TimeQuest Timing Analyzer ; ANM-NB           ; Windows 8.1 ; 6.3        ; x86_64         ;
-+---------------------------+------------------+-------------+------------+----------------+
++-----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                         ;
++---------------------------+------------------+------------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
++---------------------------+------------------+------------+------------+----------------+
+; Analysis & Synthesis      ; U130-05          ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter                    ; U130-05          ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler                 ; U130-05          ; Windows 10 ; 10.0       ; x86_64         ;
+; TimeQuest Timing Analyzer ; U130-05          ; Windows 10 ; 10.0       ; x86_64         ;
++---------------------------+------------------+------------+------------+----------------+
 
 
 ------------

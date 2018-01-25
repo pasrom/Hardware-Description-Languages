@@ -1,5 +1,5 @@
 Assembler report for Toplevel_C5G_led_switch_7segx2_gpio_uart
-Wed Dec 06 17:58:15 2017
+Thu Jan 25 14:38:40 2018
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -11,7 +11,7 @@ Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
   3. Assembler Settings
   4. Assembler Encrypted IP Cores Summary
   5. Assembler Generated Files
-  6. Assembler Device Options: C:/Users/anm/Documents/FH_Dornbirn/MEM_Embedded_Systems3/trunk/HDL/20_projects/DSM_DAC/fpga/Toplevel_C5G_led_switch_7segx2_gpio_uart/Toplevel_C5G_led_switch_7segx2_gpio_uart.sof
+  6. Assembler Device Options: C:/workspace/DSM_DAC_toplevel_design_starting_point/fpga/Toplevel_C5G_led_switch_7segx2_gpio_uart/Toplevel_C5G_led_switch_7segx2_gpio_uart.sof
   7. Assembler Messages
 
 
@@ -39,7 +39,7 @@ agreement for further details.
 +------------------------------------------------------------------+
 ; Assembler Summary                                                ;
 +-----------------------+------------------------------------------+
-; Assembler Status      ; Successful - Wed Dec 06 17:58:15 2017    ;
+; Assembler Status      ; Successful - Thu Jan 25 14:38:40 2018    ;
 ; Revision Name         ; Toplevel_C5G_led_switch_7segx2_gpio_uart ;
 ; Top-level Entity Name ; toplevel_c5g_led_switch_7segx2_gpio_uart ;
 ; Family                ; Cyclone V                                ;
@@ -64,23 +64,23 @@ agreement for further details.
 +--------+------------------------+--------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Assembler Generated Files                                                                                                                                                         ;
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; File Name                                                                                                                                                                         ;
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; C:/Users/anm/Documents/FH_Dornbirn/MEM_Embedded_Systems3/trunk/HDL/20_projects/DSM_DAC/fpga/Toplevel_C5G_led_switch_7segx2_gpio_uart/Toplevel_C5G_led_switch_7segx2_gpio_uart.sof ;
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                                                                      ;
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; File Name                                                                                                                                      ;
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; C:/workspace/DSM_DAC_toplevel_design_starting_point/fpga/Toplevel_C5G_led_switch_7segx2_gpio_uart/Toplevel_C5G_led_switch_7segx2_gpio_uart.sof ;
++------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/anm/Documents/FH_Dornbirn/MEM_Embedded_Systems3/trunk/HDL/20_projects/DSM_DAC/fpga/Toplevel_C5G_led_switch_7segx2_gpio_uart/Toplevel_C5G_led_switch_7segx2_gpio_uart.sof ;
-+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Option         ; Setting                                                                                                                                                                                    ;
-+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; JTAG usercode  ; 0x0083F963                                                                                                                                                                                 ;
-; Checksum       ; 0x0083F963                                                                                                                                                                                 ;
-+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/workspace/DSM_DAC_toplevel_design_starting_point/fpga/Toplevel_C5G_led_switch_7segx2_gpio_uart/Toplevel_C5G_led_switch_7segx2_gpio_uart.sof ;
++----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                                                                                                 ;
++----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+; JTAG usercode  ; 0x0083ED85                                                                                                                                              ;
+; Checksum       ; 0x0083ED85                                                                                                                                              ;
++----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -89,14 +89,14 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Wed Dec 06 17:58:07 2017
+    Info: Processing started: Thu Jan 25 14:38:34 2018
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off Toplevel_C5G_led_switch_7segx2_gpio_uart -c Toplevel_C5G_led_switch_7segx2_gpio_uart
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 692 megabytes
-    Info: Processing ended: Wed Dec 06 17:58:15 2017
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:08
+    Info: Peak virtual memory: 718 megabytes
+    Info: Processing ended: Thu Jan 25 14:38:40 2018
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:06
 
 
