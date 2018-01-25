@@ -1,0 +1,14 @@
+\def\xKoord{3.5}
+\def\xKoordEnd{0}
+\def\yKoordEnd{7.5}
+\begin{circuitikz}
+\draw (1,2) to [R, l_=$R$, -*] (3,2);
+\draw (3,2) to[C=$C$] (3,0);
+\draw (0,0) to[short, o-*] (3,0) to[short, -o] (4,0);
+\draw (0,0) to [open] (0,2);
+\draw (0,2) to [short, o-] (1,2)
+(-1,2) node[] {{GPIO[0]}};
+\draw (4,0) to [open] (4,2);
+\draw (3,2) to [short, -o,n=test] (4,2)
+(-0.75,0) node[] {{GND}};
+\end{circuitikz}
