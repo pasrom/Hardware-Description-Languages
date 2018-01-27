@@ -1,0 +1,9 @@
+
+State Machine - |Toplevel_C5G_GPIO|washing_machine:u1_washing_machine|state
+Name state.PUMP state.SPIN state.WASH state.WARM state.H2O state.IDLE 
+state.IDLE 0 0 0 0 0 0 
+state.H2O 0 0 0 0 1 1 
+state.WARM 0 0 0 1 0 1 
+state.WASH 0 0 1 0 0 1 
+state.SPIN 0 1 0 0 0 1 
+state.PUMP 1 0 0 0 0 1 

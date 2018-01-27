@@ -1,0 +1,1 @@
+Info (10281): Verilog HDL Declaration information at washing_machine.sv(23): object "pump" differs only in case from object "PUMP" in the same scope File: C:/workspace/waching_machine/src/washing_machine.sv Line: 23
