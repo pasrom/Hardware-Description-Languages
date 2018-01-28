@@ -38,7 +38,6 @@ coffee_1058                          DUT (.*);
 */
 
 logic   run_sim = 1'b1;
-int     error_cnt = 0;
 
 initial begin
     clk4m = 1'b0;
