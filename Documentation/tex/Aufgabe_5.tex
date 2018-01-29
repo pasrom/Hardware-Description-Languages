@@ -24,6 +24,7 @@ Um die entwickelte Logik in ein reales System einzubetten, müssen einige Aufgab
 %
 \section{Top-Level Design}
 %
+In \autoref{fig: Simulink Implementierung} ist das Top-Level Design ersichtlich. Die Verbindungen der Clock (\enquote{clk50m}) und des Reset Eingangs (\enquote{rst\_n}) wurden der Übersichtlichkeit nicht eingezeichnet.
 %
 \begin{figure}[H]
 	\centering
@@ -35,6 +36,8 @@ Um die entwickelte Logik in ein reales System einzubetten, müssen einige Aufgab
 	\label{fig: Simulink Implementierung}
 \end{figure}
 %
+In \autoref{fig: toplevel.pdf} ist das im Quartus implementierte Top-Level Design ersichtlich.
+%
 \begin{figure}[H]
 	\centering
 	\noindent\adjustbox{max width=\textwidth}{%falls größer als \textwidth, wird das Bild verkleinert
@@ -45,12 +48,17 @@ Um die entwickelte Logik in ein reales System einzubetten, müssen einige Aufgab
 	\label{fig: toplevel.pdf}
 \end{figure}
 %
-\section{Toplevel Simulation}
+\section{Toplevel Design und Simulation}
+%
+In \autoref{lst: toplevel sim code} ist das Toplevel Design ersichtlich.
 %
 \lstinputlisting[language=Verilog,label={lst: toplevel sim code}, caption=Toplevel Design]{./../code/\codeFolderName\codeFolderNameB/src/toplevel_c5g_led_switch_7segx2_gpio_uart.sv}
 %
+In \autoref{lst: toplevel sim tb} ist der Code der Testbench ersichtlich. 
+%
 \lstinputlisting[language=Verilog,label={lst: toplevel sim tb}, caption=Testbench]{./../code/\codeFolderName\codeFolderNameB/sim/tb_toplevel_c5g_led_switch_7segx2_gpio_uart.sv}
 %
+\autoref{fig: wave.PNG} zeigt den simulierten Sinus.
 %
 \begin{figure}[H]
 	\centering
@@ -94,6 +102,8 @@ f_{max}&=\frac{10^{6}~Hz}{1024}\\
 	\unterschrift{Tiefpass erster Ordnung}{eigene Ausarbeitung}{}
 	\label{fig: Tiefpassfilter}
 \end{figure}
+%
+In \autoref{fig: oszi_dutytrack} ist der generierte Sinus dargestellt. Channel 1 zeigt die gemessene Spannung über die Zeit am Ausgang des Tiefpassfilters. Channel 2 zeigt den Bitstream am Ausgang des GPIO[0]. Die Funktion F1 zeigt das Tracking des Dutycycles. Durch das Ändern des Speichers lässt sich die Art des Ausgangsbitstromes und somit der generierten Spannung beliebig wählen. \autoref{fig: ramp.png} zeigt eine generierte Sägezahnspannung, \autoref{fig: triangle.png} zeigt eine generierte Dreiecksspannung und \autoref{fig: square.png} zeigt eine generierte Rechteckspannung.
 %
 \begin{figure}[H]
 	\centering
