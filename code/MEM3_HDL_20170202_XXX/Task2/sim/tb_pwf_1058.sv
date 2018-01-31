@@ -55,13 +55,12 @@ initial begin
 
     @(negedge clk4m);
     a = 1'b1;
-    repeat (13) begin
+    repeat (12) begin
         @(negedge clk4m);
     end
+    //#1000ns;
     @(negedge clk4m);
     a = 1'b0;
-
-    #50ns;
 
     @(negedge clk4m);
     a = 1'b1;

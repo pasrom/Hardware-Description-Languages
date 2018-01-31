@@ -14,23 +14,23 @@ module pwf_1058 (
 
 // (1) counter for high
 logic [3:0]     sw_hi_cnt;
-logic           sw_hi_cnt_zero;
 
 always_ff @ (negedge rst_n or posedge clk4m) begin
     if(!rst_n) begin
-        c <= '0;
-        sw_hi_cnt <= '0;
+        c <= 1'b0;
+        sw_hi_cnt <= 4'd0;
     end
-    if (a == 1'b1 && ~c == 1'b1) begin
-        sw_hi_cnt = sw_hi_cnt + 4'b1;
-    end
-    else if (a == 1'b0) begin
-        sw_hi_cnt = '0;
-        c = '0;
-    end
-    if (sw_hi_cnt >= 13) begin
-        c = '1;
-        sw_hi_cnt ='0;
+    else begin
+        if (a && !c) begin
+            sw_hi_cnt <= sw_hi_cnt + 4'd1;
+        end
+        else if (!a) begin
+            sw_hi_cnt <= 4'd0;
+            c <= 1'b0;
+        end
+        if (sw_hi_cnt >= 12 && !c) begin
+            c <= 1'b1;
+        end
     end
 end    
 
