@@ -4,7 +4,7 @@
 echo "First arg: $1"
 echo "Second arg: $2"
 
-now=$(date +"%m.%d.%Y")
+now=$(date +"%d.%m.%Y")
 
 # check if the folder exists already
 # if it exists stop!
